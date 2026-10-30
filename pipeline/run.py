@@ -108,6 +108,49 @@ def pct(x) -> str:
     return "n/a" if x is None or pd.isna(x) else f"{100 * x:.1f}%"
 
 
+_COUNT = re.compile(r"\b(\d+) (passed|failed|skipped|errors?|xfailed|xpassed|deselected)\b")
+
+
+def parse_pytest(stdout: str, returncode: int) -> dict:
+    """Turn pytest -q output into counts. ok is False when the suite did not run cleanly: any error (for example a
+    collection error), an exit code other than 0 (all passed) or 1 (some failed), or no summary line at all. Without
+    this, a suite that never ran would be recorded as "0 passed, 0 failed"."""
+    lines = stdout.strip().splitlines()
+    tail = next((ln.strip("= ") for ln in reversed(lines) if _COUNT.search(ln)), "")
+    found = {k: int(n) for n, k in _COUNT.findall(tail)}
+    counts = {k: found.get(k, 0) for k in ("passed", "failed", "skipped", "xfailed", "xpassed")}
+    counts["errors"] = found.get("error", 0) + found.get("errors", 0)
+    ok = bool(tail) and counts["errors"] == 0 and returncode in (0, 1)
+    return {**counts, "returncode": returncode, "ok": ok, "summary": tail or "no pytest summary line",
+            "date": date.today().isoformat()}
+
+
+def run_pytest() -> dict:
+    """Run the test suite (the integration test calls the local model if Ollama is up, else it is skipped)."""
+    proc = subprocess.run([sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider"],
+                          cwd=ROOT, capture_output=True, text=True)
+    print(proc.stdout[-3000:])
+    t = parse_pytest(proc.stdout, proc.returncode)
+    if not t["ok"]:
+        print(proc.stderr[-2000:])
+    return t
+
+
+def pytest_row(t, recorded: str) -> tuple[str, str, str]:
+    """README row for the pytest result. A run that did not complete cleanly says so instead of '0 failed'."""
+    if not t:
+        return ("pytest", "**not run**", "run with --test to record it")
+    if isinstance(t, str):  # results.json written before counts were structured
+        return ("pytest", f"**{t}**", f"recorded {recorded}")
+    extra = "".join(f", {t[k]} {k}" for k in ("skipped", "xfailed", "xpassed") if t.get(k))
+    if t.get("ok") is False:
+        return ("pytest", "**DID NOT RUN CLEANLY**", f"{t.get('errors', 0)} errors, pytest exit code "
+                f"{t.get('returncode', '?')} ({t.get('summary', '')}); counts are not valid; "
+                f"recorded {t.get('date', recorded)}")
+    return ("pytest", f"**{t['passed']} passed, {t['failed']} failed**",
+            f"{t['errors']} errors{extra}; recorded {t.get('date', recorded)}")
+
+
 def update_readme(res: dict) -> None:
     s = res["scores"]
     rows = [
@@ -137,7 +180,7 @@ def update_readme(res: dict) -> None:
          "public data: real free-text summaries; NHTSA's own component label is the answer key"),
         ("FDA recalls scraped and classified", f"**{res['fda']['n']} rows**",
          "public data; robots.txt checked, 1 page, cached; no answer key (hand spot-check below)"),
-        ("pytest", f"**{res.get('pytest', 'not run')}**", f"recorded {res['date']}"),
+        pytest_row(res.get("pytest"), res["date"]),
     ]
     block = "| Result | Value | What is behind it |\n|---|---|---|\n"
     block += "\n".join(f"| {a} | {b} | {c} |" for a, b, c in rows)
@@ -200,13 +243,7 @@ def main() -> None:
         **web_stats,
     }
     if a.test:
-        proc = subprocess.run([sys.executable, "-m", "pytest", "-q"],
-                              cwd=ROOT, capture_output=True, text=True)
-        tail = proc.stdout.strip().splitlines()[-1] if proc.stdout.strip() else "no output"
-        print(proc.stdout[-3000:])
-        m = re.search(r"(\d+) passed", tail)
-        f = re.search(r"(\d+) failed", tail)
-        res["pytest"] = f"{m.group(1) if m else 0} passed, {f.group(1) if f else 0} failed"
+        res["pytest"] = run_pytest()
     res["run_seconds"] = round(time.perf_counter() - t0, 1)
     RESULTS.parent.mkdir(exist_ok=True)
     RESULTS.write_text(json.dumps(res, indent=2), encoding="utf-8")
@@ -215,6 +252,8 @@ def main() -> None:
     print(f"\nLLM   P/R {pct(s['llm']['all']['precision'])} / {pct(s['llm']['all']['recall'])}   "
           f"rules P/R {pct(s['rules']['all']['precision'])} / {pct(s['rules']['all']['recall'])}   "
           f"NHTSA {res['nhtsa']['matched']}/{res['nhtsa']['n']}   {res['run_seconds']:.0f}s")
+    if a.test and not res["pytest"]["ok"]:
+        raise SystemExit(f"pytest did not run cleanly ({res['pytest']['summary']}); README marks it as not valid")
 
 
 if __name__ == "__main__":
