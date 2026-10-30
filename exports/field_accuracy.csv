@@ -1,0 +1,91 @@
+method,style,field,tp,fp,fn,n_cells,precision,recall,f1
+hybrid,all,ALL FIELDS,421,19,21,450,0.9568,0.9525,0.9546
+hybrid,all,date_reported,46,3,1,50,0.9388,0.9787,0.9583
+hybrid,all,equipment_type,50,0,0,50,1.0,1.0,1.0
+hybrid,all,failure_category,43,7,7,50,0.86,0.86,0.86
+hybrid,all,labor_hours,47,0,1,50,1.0,0.9792,0.9895
+hybrid,all,parts_cost_usd,46,0,1,50,1.0,0.9787,0.9892
+hybrid,all,priority,40,9,10,50,0.8163,0.8,0.8081
+hybrid,all,serial_number,50,0,0,50,1.0,1.0,1.0
+hybrid,all,warranty_claim,49,0,1,50,1.0,0.98,0.9899
+hybrid,all,work_order_id,50,0,0,50,1.0,1.0,1.0
+hybrid,seen,ALL FIELDS,217,6,3,225,0.9731,0.9864,0.9797
+hybrid,seen,date_reported,22,3,0,25,0.88,1.0,0.9362
+hybrid,seen,equipment_type,25,0,0,25,1.0,1.0,1.0
+hybrid,seen,failure_category,22,3,3,25,0.88,0.88,0.88
+hybrid,seen,labor_hours,24,0,0,25,1.0,1.0,1.0
+hybrid,seen,parts_cost_usd,24,0,0,25,1.0,1.0,1.0
+hybrid,seen,priority,25,0,0,25,1.0,1.0,1.0
+hybrid,seen,serial_number,25,0,0,25,1.0,1.0,1.0
+hybrid,seen,warranty_claim,25,0,0,25,1.0,1.0,1.0
+hybrid,seen,work_order_id,25,0,0,25,1.0,1.0,1.0
+hybrid,unseen,ALL FIELDS,204,13,18,225,0.9401,0.9189,0.9294
+hybrid,unseen,date_reported,24,0,1,25,1.0,0.96,0.9796
+hybrid,unseen,equipment_type,25,0,0,25,1.0,1.0,1.0
+hybrid,unseen,failure_category,21,4,4,25,0.84,0.84,0.84
+hybrid,unseen,labor_hours,23,0,1,25,1.0,0.9583,0.9787
+hybrid,unseen,parts_cost_usd,22,0,1,25,1.0,0.9565,0.9778
+hybrid,unseen,priority,15,9,10,25,0.625,0.6,0.6122
+hybrid,unseen,serial_number,25,0,0,25,1.0,1.0,1.0
+hybrid,unseen,warranty_claim,24,0,1,25,1.0,0.96,0.9796
+hybrid,unseen,work_order_id,25,0,0,25,1.0,1.0,1.0
+llm,all,ALL FIELDS,421,19,21,450,0.9568,0.9525,0.9546
+llm,all,date_reported,46,3,1,50,0.9388,0.9787,0.9583
+llm,all,equipment_type,50,0,0,50,1.0,1.0,1.0
+llm,all,failure_category,43,7,7,50,0.86,0.86,0.86
+llm,all,labor_hours,47,0,1,50,1.0,0.9792,0.9895
+llm,all,parts_cost_usd,46,0,1,50,1.0,0.9787,0.9892
+llm,all,priority,40,9,10,50,0.8163,0.8,0.8081
+llm,all,serial_number,50,0,0,50,1.0,1.0,1.0
+llm,all,warranty_claim,49,0,1,50,1.0,0.98,0.9899
+llm,all,work_order_id,50,0,0,50,1.0,1.0,1.0
+llm,seen,ALL FIELDS,217,6,3,225,0.9731,0.9864,0.9797
+llm,seen,date_reported,22,3,0,25,0.88,1.0,0.9362
+llm,seen,equipment_type,25,0,0,25,1.0,1.0,1.0
+llm,seen,failure_category,22,3,3,25,0.88,0.88,0.88
+llm,seen,labor_hours,24,0,0,25,1.0,1.0,1.0
+llm,seen,parts_cost_usd,24,0,0,25,1.0,1.0,1.0
+llm,seen,priority,25,0,0,25,1.0,1.0,1.0
+llm,seen,serial_number,25,0,0,25,1.0,1.0,1.0
+llm,seen,warranty_claim,25,0,0,25,1.0,1.0,1.0
+llm,seen,work_order_id,25,0,0,25,1.0,1.0,1.0
+llm,unseen,ALL FIELDS,204,13,18,225,0.9401,0.9189,0.9294
+llm,unseen,date_reported,24,0,1,25,1.0,0.96,0.9796
+llm,unseen,equipment_type,25,0,0,25,1.0,1.0,1.0
+llm,unseen,failure_category,21,4,4,25,0.84,0.84,0.84
+llm,unseen,labor_hours,23,0,1,25,1.0,0.9583,0.9787
+llm,unseen,parts_cost_usd,22,0,1,25,1.0,0.9565,0.9778
+llm,unseen,priority,15,9,10,25,0.625,0.6,0.6122
+llm,unseen,serial_number,25,0,0,25,1.0,1.0,1.0
+llm,unseen,warranty_claim,24,0,1,25,1.0,0.96,0.9796
+llm,unseen,work_order_id,25,0,0,25,1.0,1.0,1.0
+rules,all,ALL FIELDS,311,1,131,450,0.9968,0.7036,0.8249
+rules,all,date_reported,22,0,25,50,1.0,0.4681,0.6377
+rules,all,equipment_type,50,0,0,50,1.0,1.0,1.0
+rules,all,failure_category,31,0,19,50,1.0,0.62,0.7654
+rules,all,labor_hours,24,0,24,50,1.0,0.5,0.6667
+rules,all,parts_cost_usd,24,0,23,50,1.0,0.5106,0.6761
+rules,all,priority,30,1,20,50,0.9677,0.6,0.7407
+rules,all,serial_number,50,0,0,50,1.0,1.0,1.0
+rules,all,warranty_claim,30,0,20,50,1.0,0.6,0.75
+rules,all,work_order_id,50,0,0,50,1.0,1.0,1.0
+rules,seen,ALL FIELDS,220,0,0,225,1.0,1.0,1.0
+rules,seen,date_reported,22,0,0,25,1.0,1.0,1.0
+rules,seen,equipment_type,25,0,0,25,1.0,1.0,1.0
+rules,seen,failure_category,25,0,0,25,1.0,1.0,1.0
+rules,seen,labor_hours,24,0,0,25,1.0,1.0,1.0
+rules,seen,parts_cost_usd,24,0,0,25,1.0,1.0,1.0
+rules,seen,priority,25,0,0,25,1.0,1.0,1.0
+rules,seen,serial_number,25,0,0,25,1.0,1.0,1.0
+rules,seen,warranty_claim,25,0,0,25,1.0,1.0,1.0
+rules,seen,work_order_id,25,0,0,25,1.0,1.0,1.0
+rules,unseen,ALL FIELDS,91,1,131,225,0.9891,0.4099,0.5796
+rules,unseen,date_reported,0,0,25,25,,0.0,
+rules,unseen,equipment_type,25,0,0,25,1.0,1.0,1.0
+rules,unseen,failure_category,6,0,19,25,1.0,0.24,0.3871
+rules,unseen,labor_hours,0,0,24,25,,0.0,
+rules,unseen,parts_cost_usd,0,0,23,25,,0.0,
+rules,unseen,priority,5,1,20,25,0.8333,0.2,0.3226
+rules,unseen,serial_number,25,0,0,25,1.0,1.0,1.0
+rules,unseen,warranty_claim,5,0,20,25,1.0,0.2,0.3333
+rules,unseen,work_order_id,25,0,0,25,1.0,1.0,1.0

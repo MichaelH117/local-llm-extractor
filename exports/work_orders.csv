@@ -1,0 +1,51 @@
+doc_id,layout,style,source_file,work_order_id,date_reported,equipment_type,serial_number,failure_category,labor_hours,parts_cost_usd,priority,warranty_claim,extraction_method,llm_attempts,validation_errors,seconds,text_chars
+doc_001,table,seen,doc_001.pdf,WO-2025-13278,2025-02-27,water pump,SN-J3H-28289,electrical,12.0,2624.58,high,False,llm,1,,0.02,330
+doc_002,narrative,seen,doc_002.pdf,WO-2025-22280,2025-01-25,forklift,SN-H8W-13478,tires_brakes,2.0,3370.84,medium,True,llm,1,,0.02,479
+doc_003,form,seen,doc_003.pdf,WO-2025-65392,2025-03-23,utility truck,SN-J2G-54118,electrical,1.0,1732.72,medium,False,llm,1,,0.02,368
+doc_004,table,seen,doc_004.pdf,WO-2025-70217,2025-01-23,air compressor,SN-D6C-82357,engine,12.0,4138.27,high,True,llm,1,,0.01,286
+doc_005,narrative,seen,doc_005.pdf,WO-2025-16006,2025-02-05,water pump,SN-H4C-40512,electrical,4.0,3056.75,medium,True,llm,1,,0.02,511
+doc_006,form,seen,doc_006.pdf,WO-2025-89840,2025-02-06,water pump,SN-F8H-31417,cooling,4.0,4443.0,high,False,llm,1,,0.02,344
+doc_007,table,seen,doc_007.pdf,WO-2025-17331,2025-06-16,forklift,SN-B5N-45093,electrical,2.0,2728.96,high,True,llm,1,,0.02,334
+doc_008,narrative,seen,doc_008.pdf,WO-2025-61856,2025-09-13,water pump,SN-R2J-28301,engine,6.0,3589.46,medium,False,llm,1,,0.02,491
+doc_009,form,seen,doc_009.pdf,WO-2025-74686,2025-09-18,generator,SN-B1E-92240,hydraulic,12.0,318.98,medium,False,llm,1,,0.02,364
+doc_010,table,seen,doc_010.pdf,WO-2025-79352,2025-08-28,utility truck,SN-U0Y-25014,tires_brakes,2.5,1642.74,medium,False,llm,1,,0.01,316
+doc_011,narrative,seen,doc_011.pdf,WO-2025-10425,2025-08-21,water pump,SN-J8F-76542,engine,12.0,3072.37,high,True,llm,1,,0.04,486
+doc_012,form,seen,doc_012.pdf,WO-2025-10074,2025-09-29,air compressor,SN-L7A-24662,engine,2.5,1167.57,high,False,llm,1,,0.02,355
+doc_013,table,seen,doc_013.pdf,WO-2025-73699,2025-02-13,generator,SN-U2E-96474,cooling,6.0,2539.92,high,False,llm,1,,0.02,309
+doc_014,narrative,seen,doc_014.pdf,WO-2025-80686,2024-12-11,water pump,SN-Z3Z-50857,engine,12.0,,high,False,llm,1,,0.02,410
+doc_015,form,seen,doc_015.pdf,WO-2025-40161,2025-10-11,air compressor,SN-H0C-92719,electrical,2.0,0.0,low,False,llm,1,,0.02,388
+doc_016,table,seen,doc_016.pdf,WO-2025-77391,2025-02-06,forklift,SN-J7G-80678,hydraulic,8.0,1177.74,medium,False,llm,1,,0.02,292
+doc_017,narrative,seen,doc_017.pdf,WO-2025-22363,2025-04-08,generator,SN-Y6M-65519,cooling,,274.21,high,False,llm,1,,0.02,418
+doc_018,form,seen,doc_018.pdf,WO-2025-42591,2025-02-25,forklift,SN-G8R-28373,cooling,1.5,1210.32,low,False,llm,1,,0.02,367
+doc_019,table,seen,doc_019.pdf,WO-2025-22833,2025-10-09,generator,SN-X8A-22224,hydraulic,1.5,2318.3,medium,False,llm,1,,0.03,314
+doc_020,narrative,seen,doc_020.pdf,WO-2025-59672,2025-03-26,generator,SN-N4R-47388,cooling,6.0,2343.72,low,True,llm,1,,0.02,469
+doc_021,form,seen,doc_021.pdf,WO-2025-17492,2025-06-10,generator,SN-V7T-79615,hydraulic,0.5,398.33,low,True,llm,1,,0.01,355
+doc_022,table,seen,doc_022.pdf,WO-2025-98501,2025-02-04,forklift,SN-N1V-42271,tires_brakes,8.0,0.0,low,False,llm,1,,0.02,291
+doc_023,narrative,seen,doc_023.pdf,WO-2025-84085,2024-11-21,air compressor,SN-L4G-97782,engine,2.0,641.25,high,True,llm,1,,0.02,491
+doc_024,form,seen,doc_024.pdf,WO-2025-91416,2025-08-23,air compressor,SN-D1U-37938,tires_brakes,2.5,1685.01,low,False,llm_retry,2,"date_reported: Input should be a valid date or datetime, input is too short",0.04,353
+doc_025,table,seen,doc_025.pdf,WO-2025-47353,2025-07-09,forklift,SN-R8Z-49651,tires_brakes,12.0,3210.73,high,True,llm,1,,0.02,311
+doc_026,narrative,unseen,doc_026.pdf,WO-2025-27601,2025-02-23,utility truck,SN-D1U-30374,engine,2.5,3448.77,low,False,llm,1,,0.01,463
+doc_027,form,unseen,doc_027.pdf,WO-2025-22097,2025-01-27,water pump,SN-P4B-10464,engine,1.5,1268.46,high,False,llm,1,,0.02,363
+doc_028,table,unseen,doc_028.pdf,WO-2025-83519,2025-08-07,generator,SN-D1Z-29536,tires_brakes,0.5,2802.31,low,False,llm,1,,0.02,362
+doc_029,narrative,unseen,doc_029.pdf,WO-2025-50404,2025-01-22,utility truck,SN-B5G-99399,engine,12.0,3747.86,low,False,llm,1,,0.02,446
+doc_030,form,unseen,doc_030.pdf,WO-2025-33206,2025-03-25,hvac unit,SN-A2L-63964,hydraulic,2.5,3370.62,medium,False,llm,1,,0.02,363
+doc_031,table,unseen,doc_031.pdf,WO-2025-39154,2025-08-29,forklift,SN-R5K-39831,hydraulic,0.5,1921.66,low,False,llm,1,,0.02,355
+doc_032,narrative,unseen,doc_032.pdf,WO-2025-56025,2025-05-23,water pump,SN-T6Y-80282,engine,0.5,,low,False,llm,1,,0.02,423
+doc_033,form,unseen,doc_033.pdf,WO-2025-51114,2025-06-26,hvac unit,SN-W8D-60488,tires_brakes,2.0,3406.54,low,False,llm,1,,0.01,382
+doc_034,table,unseen,doc_034.pdf,WO-2025-97900,2025-10-03,forklift,SN-M6C-97062,engine,8.0,4072.75,high,False,llm,1,,0.02,360
+doc_035,narrative,unseen,doc_035.pdf,WO-2025-50538,2025-09-17,water pump,SN-P5N-48752,engine,1.5,3196.69,low,False,llm,1,,0.02,454
+doc_036,form,unseen,doc_036.pdf,WO-2025-10053,2025-10-08,utility truck,SN-K3P-86019,tires_brakes,12.0,2128.95,high,True,llm,1,,0.02,384
+doc_037,table,unseen,doc_037.pdf,WO-2025-32241,2025-08-31,water pump,SN-C4T-97012,tires_brakes,3.0,0.0,low,False,llm,1,,0.02,365
+doc_038,narrative,unseen,doc_038.pdf,WO-2025-36100,2025-04-26,forklift,SN-A0H-72277,tires_brakes,1.0,4255.17,high,True,llm,1,,0.01,452
+doc_039,form,unseen,doc_039.pdf,WO-2025-23970,2025-01-03,hvac unit,SN-H2Z-77889,electrical,0.5,4405.09,medium,False,llm,1,,38.91,351
+doc_040,table,unseen,doc_040.pdf,WO-2025-97500,2025-08-26,air compressor,SN-U9L-68008,tires_brakes,6.0,4354.3,low,False,llm,1,,28.22,366
+doc_041,narrative,unseen,doc_041.pdf,WO-2025-68991,2025-09-01,utility truck,SN-H4T-73517,engine,2.5,3429.31,low,True,llm,1,,29.28,464
+doc_042,form,unseen,doc_042.pdf,WO-2025-60205,2025-04-29,water pump,SN-E3C-64377,cooling,3.0,2004.48,low,False,llm,1,,26.33,355
+doc_043,table,unseen,doc_043.pdf,WO-2025-86556,,water pump,SN-A9N-72518,electrical,,,,,rules_fallback,3,"date_reported: Input should be a valid date or datetime, invalid character in year | date_reported: Input should be a valid date or datetime, invalid character in year | date_reported: Input should be a valid date or datetime, invalid character in year",75.56,353
+doc_044,narrative,unseen,doc_044.pdf,WO-2025-89069,2025-10-07,forklift,SN-S3J-67125,cooling,0.5,3215.56,low,False,llm,1,,31.36,442
+doc_045,form,unseen,doc_045.pdf,WO-2025-13534,2025-10-01,hvac unit,SN-V9Y-13552,electrical,12.0,4162.88,low,True,llm,1,,28.43,373
+doc_046,table,unseen,doc_046.pdf,WO-2025-52906,2025-07-14,forklift,SN-R5L-59692,engine,4.0,406.92,high,False,llm,1,,29.97,341
+doc_047,narrative,unseen,doc_047.pdf,WO-2025-55870,2025-01-27,forklift,SN-X1X-15276,electrical,2.0,,low,True,llm,1,,31.3,429
+doc_048,form,unseen,doc_048.pdf,WO-2025-43586,2025-08-27,utility truck,SN-F9W-25012,hydraulic,2.5,137.87,low,False,llm,1,,30.11,359
+doc_049,table,unseen,doc_049.pdf,WO-2025-61990,2025-07-12,water pump,SN-G1V-92213,hydraulic,1.0,1458.07,high,False,llm,1,,30.41,342
+doc_050,narrative,unseen,doc_050.pdf,WO-2025-84177,2025-03-03,generator,SN-M8P-96706,engine,,1647.79,low,False,llm,1,,29.74,414

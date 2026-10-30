@@ -1,0 +1,87 @@
+{
+  "seed": 42,
+  "n_docs": 50,
+  "model": "gemma3:4b",
+  "date": "2026-10-30",
+  "scores": {
+    "rules": {
+      "all": {
+        "precision": 0.9968,
+        "recall": 0.7036,
+        "f1": 0.8249
+      },
+      "seen": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "unseen": {
+        "precision": 0.9891,
+        "recall": 0.4099,
+        "f1": 0.5796
+      }
+    },
+    "llm": {
+      "all": {
+        "precision": 0.9568,
+        "recall": 0.9525,
+        "f1": 0.9546
+      },
+      "seen": {
+        "precision": 0.9731,
+        "recall": 0.9864,
+        "f1": 0.9797
+      },
+      "unseen": {
+        "precision": 0.9401,
+        "recall": 0.9189,
+        "f1": 0.9294
+      }
+    },
+    "hybrid": {
+      "all": {
+        "precision": 0.9568,
+        "recall": 0.9525,
+        "f1": 0.9546
+      },
+      "seen": {
+        "precision": 0.9731,
+        "recall": 0.9864,
+        "f1": 0.9797
+      },
+      "unseen": {
+        "precision": 0.9401,
+        "recall": 0.9189,
+        "f1": 0.9294
+      }
+    }
+  },
+  "docs_all_correct": {
+    "hybrid": 0.68,
+    "llm": 0.68,
+    "rules": 0.5
+  },
+  "llm_first_try": 48,
+  "llm_retried": 1,
+  "llm_fallback": 1,
+  "sec_per_doc": 0.0,
+  "llm_calls": 59,
+  "llm_seconds": 899.0,
+  "nhtsa": {
+    "n": 35,
+    "matched": 31
+  },
+  "fda": {
+    "n": 10,
+    "categories": {
+      "microbial_contamination": 4,
+      "undeclared_allergen": 2,
+      "chemical_contamination": 1,
+      "undeclared_drug_ingredient": 1,
+      "foreign_material": 1,
+      "quality_or_potency": 1
+    }
+  },
+  "pytest": "32 passed, 0 failed",
+  "run_seconds": 938.8
+}
