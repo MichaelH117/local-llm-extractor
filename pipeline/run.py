@@ -111,7 +111,8 @@ def pct(x) -> str:
 def update_readme(res: dict) -> None:
     s = res["scores"]
     rows = [
-        ("Documents", f"**{res['n_docs']} PDFs**", "3 layouts (form, table, free-text email); 25 seen + 25 unseen "
+        ("Documents (SYNTHETIC)", f"**{res['n_docs']} PDFs**", "invented by a seeded generator; "
+         "3 layouts (form, table, free-text email); 25 seen + 25 unseen "
          "templates; answer key never read by the extractors"),
         ("LLM field precision / recall, all docs", f"**{pct(s['llm']['all']['precision'])} / "
          f"{pct(s['llm']['all']['recall'])}**", f"{res['model']} on a laptop CPU, 9 fields x {res['n_docs']} docs"),
@@ -127,13 +128,15 @@ def update_readme(res: dict) -> None:
          f"rules {pct(res['docs_all_correct']['rules'])}, hybrid {pct(res['docs_all_correct']['hybrid'])}"),
         ("Invalid LLM answers", f"**{res['llm_retried']} retried, {res['llm_fallback']} fell back to rules**",
          "pydantic rejected the JSON; the error was sent back to the model"),
-        ("LLM time per document", f"**{res['sec_per_doc']} s median**", "CPU only (Intel Iris Xe, no CUDA GPU), "
-         "temperature 0; re-runs use the on-disk cache"),
+        ("LLM time per real model call",
+         f"**{res['llm_seconds'] / res['llm_calls']:.1f} s average**" if res["llm_calls"] else "n/a (all cached)",
+         f"{res['llm_calls']} uncached calls in {res['llm_seconds']:.0f} s; CPU only (Intel Iris Xe, no CUDA GPU), "
+         "temperature 0; cached answers take ~0 s"),
         ("NHTSA recalls (public API): LLM category = NHTSA component",
          f"**{res['nhtsa']['matched']} of {res['nhtsa']['n']}**" if res["nhtsa"]["n"] else "n/a",
-         "real free-text summaries; NHTSA's own component label is the answer key"),
+         "public data: real free-text summaries; NHTSA's own component label is the answer key"),
         ("FDA recalls scraped and classified", f"**{res['fda']['n']} rows**",
-         "robots.txt checked, 1 page, cached; no answer key, categories in exports/fda_recalls.csv"),
+         "public data; robots.txt checked, 1 page, cached; no answer key (hand spot-check below)"),
         ("pytest", f"**{res.get('pytest', 'not run')}**", f"recorded {res['date']}"),
     ]
     block = "| Result | Value | What is behind it |\n|---|---|---|\n"
