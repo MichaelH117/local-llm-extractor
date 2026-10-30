@@ -179,6 +179,35 @@ Three of the four name the system that gets hurt, not the system that is broken,
 probably pulls fire-related recalls toward `fuel`.
 <!-- failures:end -->
 
+## Results site
+
+A five-page Quarto site, in the Hanson Labs MANILA style, explains the run to a non-technical office manager in about
+30 seconds, and gives a reviewer the honest evaluation. Source: [site/](site/). Rendered output: `site/_site/` (for
+GitHub Pages; not committed).
+
+| Page | What it shows |
+|---|---|
+| Overview | The verdict first, the "Processed locally" stamp, familiar vs new forms, AI vs plain rules (1 square = 1 fact), and where it slipped |
+| Watch the AI read | Any of the 50 SYNTHETIC documents: the exact text the model saw, each answer highlighted, a ✓ or ✗ per box from the answer key, the plain rules alongside, plus **Random document** and **Show me a mistake** |
+| Where it slipped | All 24 wrong boxes in 4 causes, with the real document text, plus the 4 NHTSA mismatches (public data) |
+| Privacy | What runs where, the localhost-only guard quoted from `extractor/llm.py`, what is **not** proven yet, and a draft security-plan (WISP) paragraph labelled "draft wording, not legal advice" |
+| Glossary | 25 plain-English terms; terms are underlined with a hover/focus definition on first use |
+
+```powershell
+.venv\Scripts\python -m generator.make_docs   # only if data/docs/ is missing (the PDFs are git-ignored; no Ollama needed)
+quarto render site                             # runs site/build_data.py first
+```
+
+`site/build_data.py` recomputes every number from `docs/results.json` and `exports/*.csv` (and recounts each cell from
+the answer key when `data/docs/` exists). **If any number disagrees, it exits 1 and the render stops.** A planted change
+to one row of `field_accuracy.csv` was caught by 4 separate checks.
+
+![Overview at 1440 px](docs/img/site/overview-1440.png)
+
+| Watch the AI read | Phone (375 px) |
+|---|---|
+| ![Document reader](docs/img/site/read-1440.png) | ![Overview on a phone](docs/img/site/overview-375.png) |
+
 ## How to run it
 
 You need [Ollama](https://ollama.com/download) and the model (about 3.3 GB, one time):
@@ -222,6 +251,7 @@ running (`pytest -m "not integration"` leaves it out).
 | [pipeline/evaluate.py](pipeline/evaluate.py) | Field-level precision / recall against the answer key |
 | [tests/](tests/) | pytest: generator, retry/fallback with a fake LLM, scoring maths, scraper politeness, outputs, one real-model test |
 | [exports/](exports/) | Power BI-ready CSVs from the last run |
+| [site/](site/) | Quarto results site; `build_data.py` checks every number against `exports/` before rendering |
 | [docs/](docs/) | [Data dictionary](docs/data_dictionary.md) and [results.json](docs/results.json) |
 
 ## Limits, and what I would do with real documents

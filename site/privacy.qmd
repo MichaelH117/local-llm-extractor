@@ -1,0 +1,99 @@
+---
+pagetitle: "Privacy: Local AI Document Reader"
+description: "What runs where, the localhost-only proof, what is not proven yet, and draft wording for a written security plan (not legal advice)."
+---
+
+{{< include _gen/status.html >}}
+
+::: {.hl-panel .page-head}
+# Your documents are read on this PC. The AI is never given an outside address to send them to.
+
+This page shows what runs where, the proof we have, what we have **not** proven yet, and a draft paragraph you could
+adapt for your office's [written security plan](glossary.qmd#wisp){.gl}. It makes no claim that the tool makes anyone
+compliant with any rule.
+:::
+
+::: {.hl-panel .chapter}
+## What runs where
+
+```{=html}
+<div class="where" role="list">
+  <section class="where-box is-pc" role="listitem" aria-labelledby="w-pc">
+    <h3 id="w-pc">On this PC <span class="where-tag">✓ your documents stay here</span></h3>
+    <ol class="flow">
+      <li><b>Your PDF files</b><span>in a folder you choose</span></li>
+      <li><b>Text reader</b><span>pypdf pulls the text out of each PDF</span></li>
+      <li><b>The AI model</b><span>{{< var run.model >}}, running in Ollama at <code>localhost:11434</code></span></li>
+      <li><b>Automatic checks</b><span>a real date, a known category, a sensible number; up to 3 tries</span></li>
+      <li><b>Finished tables</b><span>DuckDB file and CSV files for Excel or Power BI</span></li>
+    </ol>
+  </section>
+  <section class="where-box is-net" role="listitem" aria-labelledby="w-net">
+    <h3 id="w-net">The internet <span class="where-tag">only for these</span></h3>
+    <ul class="flow plain">
+      <li><b>Once, at setup</b><span>downloading Ollama and the AI model file (about 3.3 GB)</span></li>
+      <li><b>Demo only: public recalls</b><span>1 FDA web page and the NHTSA recalls API, cached after the first run. Never your documents. <code>--offline</code> turns it off.</span></li>
+    </ul>
+    <h3 class="where-none">Cloud AI services <span class="where-tag">none used</span></h3>
+    <p>No ChatGPT, no Copilot, no API key, no account.</p>
+  </section>
+</div>
+```
+:::
+
+::: {.hl-panel .chapter}
+## The proof we have
+
+**1. The code refuses outside addresses.** Before it sends any text, the reading program checks where it is sending it.
+Anything other than [localhost](glossary.qmd#localhost){.gl} stops the program with an error.
+
+{{< include _gen/guard.html >}}
+
+**2. The test suite ran and passed** on {{< var run.date >}}: {{< var run.pytest >}}, including the test above.
+
+**3. The AI model does not learn from your files.** Ollama runs a fixed model file; reading a document does not change
+it. The program does keep a cache of the AI's answers on disk (`data/llm_cache/`), so a re-run is instant. That cache
+holds extracted values and belongs in your retention plan.
+:::
+
+::: {.hl-panel .chapter .limits}
+## What we have not proven yet
+
+- **No network capture.** Nobody has yet recorded the PC's network traffic during a run to show zero outside connections.
+  That is the next test.
+- **Not tested on an air-gapped PC** (one with no network at all), although nothing in the design needs one.
+- **Only SYNTHETIC documents.** It has never been run on real client files.
+- **No [OCR](glossary.qmd#ocr){.gl}.** It reads PDFs that already contain text. Scans and faxes would need an extra step.
+- **Not a security product.** It cannot protect files that are already exposed elsewhere on the PC.
+:::
+
+::: {.hl-panel .chapter #wisp}
+## Draft wording for your written security plan
+
+[Draft wording, not legal advice]{.tag .tag-draft}
+
+Tax preparers must keep a [WISP](glossary.qmd#wisp){.gl} under the [FTC Safeguards Rule](glossary.qmd#safeguards-rule){.gl}
+([IRS Publication 5708](https://www.irs.gov/pub/irs-pdf/p5708.pdf) is a free template). Law firms weigh
+[ABA Formal Opinion 512](glossary.qmd#aba-512){.gl}. The paragraph below only describes this tool. Fill in the brackets,
+and have the person responsible for your plan, or your adviser, review it. It is not a complete plan.
+
+```{=html}
+<div class="wisp">
+<p id="wisp-text">[Firm name] uses Local AI Document Reader on [computer name] to copy facts from [document types] into
+spreadsheets. The program and its AI model run entirely on that computer. Document text is sent only to a service on the
+same computer (localhost); the program is written to refuse any other address, and this is checked by an automated test.
+No cloud AI service is used and no account is required. The internet is used only to install the program and download the
+AI model; document processing does not require it. Source documents, extracted data and the program's answer cache are
+stored in [folder], which is covered by the access controls, encryption, backup and disposal procedures in section [X] of
+this plan. Cached answers are deleted [schedule]. The AI model does not learn from or keep our documents. [Staff role]
+reviews every extracted value before it is used, and the tool never files or submits anything on its own.</p>
+<button type="button" class="btn-ghost" id="wisp-copy" data-target="wisp-text">Copy this paragraph</button>
+<span id="wisp-copied" class="muted" aria-live="polite"></span>
+</div>
+```
+
+::: {.wtm}
+**Why the brackets matter.** Only your office knows where files live, who reviews them and how long they are kept.
+The tool can help you describe it in your plan; it does not make your office compliant by itself.
+:::
+:::

@@ -1,0 +1,17 @@
+---
+pagetitle: "Glossary: Local AI Document Reader"
+description: "Plain-English definitions of every term on this site, each with what it means in this project."
+---
+
+{{< include _gen/status.html >}}
+
+::: {.hl-panel .page-head}
+# Glossary: every term on this site, in plain English
+
+Each entry says what the word means, then what it means in this project. On the other pages, a dotted underline marks a
+term the first time it appears. Hover over it, or tab to it, to see the short definition; click it to come here.
+:::
+
+::: {.hl-panel .chapter}
+{{< include _gen/glossary.html >}}
+:::

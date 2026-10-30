@@ -1,0 +1,60 @@
+project:
+  type: website
+  output-dir: _site
+  # Every number on the site is recomputed from docs/results.json + exports/ here. If anything disagrees, this
+  # step exits 1 and the render stops (see build_data.py).
+  pre-render: build_data.py
+  resources:
+    - data/site-data.js
+    - pdf/*.pdf
+    - assets/brand/*
+
+website:
+  title: "Local AI Document Reader"
+  description: "A small AI on one office PC reads messy work orders into tables. Scored honestly on 50 SYNTHETIC documents. Nothing leaves the PC."
+  site-url: "https://michaelh117.github.io/local-llm-extractor/"
+  favicon: assets/brand/favicon.svg
+  page-navigation: false
+  search: false
+  bread-crumbs: false
+  navbar:
+    title: "Local AI Document Reader"
+    logo: assets/brand/monogram-light.svg
+    logo-alt: "Hanson Labs monogram"
+    collapse-below: lg
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: read.qmd
+        text: Watch the AI read
+      - href: errors.qmd
+        text: Where it slipped
+      - href: privacy.qmd
+        text: Privacy
+      - href: glossary.qmd
+        text: Glossary
+  page-footer:
+    left: "SYNTHETIC documents only. FDA and NHTSA records are public data. A portfolio demonstration, not a product for sale."
+    center: '<span class="hl-lockup"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M4 12V4H12M52 4H60V12M60 52V60H52M12 60H4V52" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16V48M16 32H36M36 16V48H47" fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="square"/><circle class="hl-dot" cx="47" cy="21" r="4.6"/></svg><span>A <b>Hanson Labs</b> project</span></span>'
+    right: "Built with Quarto from `docs/results.json` and `exports/`."
+
+format:
+  html:
+    theme: [cosmo, theme.scss]
+    toc: false
+    page-layout: full
+    smooth-scroll: false
+    anchor-sections: false
+    code-copy: false
+    link-external-newwindow: true
+    link-external-icon: false
+    include-in-header:
+      - text: |
+          <script>document.documentElement.setAttribute("data-hl-theme","manila");</script>
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    include-before-body: _banner.html
+    include-after-body:
+      - text: '<script src="data/site-data.js"></script><script src="assets/brand/hl-wallpaper.js"></script><script src="assets/site.js"></script>'
+    css: [assets/brand/base.css, assets/brand/manila.css, assets/brand/hl-wallpaper.css, assets/site.css]

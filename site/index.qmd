@@ -1,0 +1,142 @@
+---
+pagetitle: "Local AI Document Reader: results"
+description: "A small AI on one office PC read 50 SYNTHETIC work orders. On forms it had never seen it found 91.9% of the facts. Nothing leaves the PC."
+---
+
+{{< include _gen/status.html >}}
+
+::: {.hl-panel .hero}
+[Local AI document reader · results of one recorded run]{.kicker}
+
+# On forms it had never seen, a small AI on one office PC found 92 of every 100 facts. {.hero-title}
+
+It reads messy work orders and copies 9 facts from each one (work order number, date, equipment, cost and so on) into a
+spreadsheet, so nobody has to retype them. This is called [extraction](glossary.qmd#extraction){.gl}. The documents never
+leave the computer. All 50 are [SYNTHETIC](glossary.qmd#synthetic){.gl}, and every answer was marked against a hidden
+[answer key](glossary.qmd#answer-key){.gl}.
+
+```{=html}
+<div class="kpis" role="list">
+  <div class="kpi" role="listitem"><span class="kpi-label">Facts found on new forms</span>
+    <span class="kpi-num">{{< var llm.u_r >}}%</span>
+    <span class="kpi-cap">{{< var llm.u_tp >}} of {{< var llm.u_facts >}} facts, 25 documents</span></div>
+  <div class="kpi" role="listitem"><span class="kpi-label">Right when it answered (new forms)</span>
+    <span class="kpi-num">{{< var llm.u_p >}}%</span>
+    <span class="kpi-cap">{{< var llm.u_tp >}} of {{< var llm.u_answers >}} answers</span></div>
+  <div class="kpi is-rules" role="listitem"><span class="kpi-label">Plain rules on the same new forms</span>
+    <span class="kpi-num">{{< var rules.u_r >}}%</span>
+    <span class="kpi-cap">found {{< var rules.u_tp >}} of {{< var rules.u_facts >}} facts</span></div>
+  <div class="kpi is-ok" role="listitem"><span class="kpi-label">Made-up numbers</span>
+    <span class="kpi-num">{{< var num.invented >}}</span>
+    <span class="kpi-cap">in {{< var num.cells >}} hours and cost boxes ({{< var num.blank >}} left blank)</span></div>
+</div>
+```
+
+[See the AI read a document](read.qmd){.btn-main} [See every mistake](errors.qmd){.btn-ghost}
+:::
+
+::: {.hl-panel .chapter .stamp-chapter}
+::: {.stamp-wrap}
+```{=html}
+<p class="stamp" id="hero-stamp"><span>Processed locally</span><span class="stamp-small">Nothing uploaded</span></p>
+```
+:::
+
+::: {.stamp-copy}
+## Nothing leaves this PC. The AI is only allowed to talk to its own computer.
+
+The AI model (an [LLM](glossary.qmd#llm){.gl} called {{< var run.model >}}) runs inside a free program on the same PC.
+The reading program sends text only to [localhost](glossary.qmd#localhost){.gl}, the computer's name for itself. It is
+written to refuse any other address, and an automatic test checks that.
+
+::: {.wtm}
+**What this means for an office.** Client files are read where they already are. There is no cloud account, no upload
+and no outside company holding a copy. One honest limit: the demo also downloads [public](glossary.qmd#public-data){.gl}
+government recall data from the internet. That is never your documents, and one switch turns it off.
+[How we know, and a draft paragraph for your security plan →](privacy.qmd)
+:::
+:::
+:::
+
+::: {.hl-panel .chapter}
+## New forms cost the AI {{< var llm.drop >}} points. They cost the plain rules {{< var rules.drop >}}.
+
+Half of the documents use [familiar layouts](glossary.qmd#seen-unseen){.gl}. The other half use new labels and wording
+("Precedence" instead of "Priority", "Powerplant" instead of "engine"), like next month's forms from a new supplier.
+The [plain rules](glossary.qmd#rules){.gl} were written while looking at the familiar half, so they are perfect there and
+lost on the new half. The AI was not tuned on either.
+
+{{< include _gen/seen_unseen.html >}}
+
+::: {.wtm}
+**What this means.** If every form you get looks the same, simple rules are enough. If layouts change, the AI keeps
+working while rules quietly miss most of the page. "Found" here is [recall](glossary.qmd#recall){.gl}.
+:::
+
+::: {.drill}
+<details><summary>Show each of the 9 boxes</summary>
+
+{{< include _gen/dumbbells.html >}}
+
+{{< include _gen/field_table.html >}}
+
+</details>
+:::
+:::
+
+::: {.hl-panel .chapter}
+## On the same 25 new forms, the AI found {{< var llm.u_tp >}} facts. The plain rules found {{< var rules.u_tp >}}.
+
+Each square is one fact from the answer key. Count the empty squares: those are facts nobody would have typed in.
+
+{{< include _gen/units.html >}}
+
+::: {.wtm}
+**What this means.** The rules are cautious: when they answer, they are right {{< var rules.u_p >}}% of the time. But
+they leave {{< var rules.u_blank >}} boxes blank. The AI answers almost everything and is right
+{{< var llm.u_p >}}% of the time it answers (its [precision](glossary.qmd#precision){.gl}). That is why a person should
+still check its work.
+:::
+:::
+
+::: {.hl-panel .chapter}
+## Where it slipped: {{< var wrong >}} of {{< var cells >}} boxes were wrong, and none were made-up numbers.
+
+Every mistake fell into one of four causes. Each one has a likely fix.
+
+{{< include _gen/causes.html >}}
+
+::: {.wtm}
+**What this means.** The AI never invented a labor hour or a dollar amount. Its only invented values are
+{{< var dates_invented >}} dates, on emails that gave no report date. Priority on the new P1/P2/P3 wording is its weakest
+box: treat it as "needs a look" until the fix is tested.
+[See all {{< var wrong >}} with the real document text →](errors.qmd)
+:::
+
+[Also tested on real public text.]{.mini-h} On {{< var nhtsa.n >}} [NHTSA](glossary.qmd#nhtsa){.gl} vehicle recalls
+([PUBLIC DATA]{.tag .tag-public}), the AI named the same broken part as NHTSA's own label {{< var nhtsa.match >}} times.
+:::
+
+::: {.hl-panel .chapter .finale}
+## The bottom line
+
+On forms it had never seen, a laptop-sized AI found **{{< var llm.u_r >}}%** of the facts where hand-written rules found
+**{{< var rules.u_r >}}%**, without ever sending a page off the computer, and without inventing a single number.
+It is a fast first draft, not a final answer: a person approves every value before it is used.
+
+::: {.method}
+**How this was measured (for reviewers).**
+
+- 50 SYNTHETIC work orders from a seeded generator: 3 layouts (form, table, free-text email), 25 familiar and 25 new.
+- The answer key was never shown to either method. Neither the rules nor the AI prompt changed after the new half was
+  looked at. The familiar-form score ({{< var llm.s_r >}}% found) is never the headline.
+- 9 boxes x 50 documents = {{< var cells >}} boxes. Precision = right answers / answers given. Recall = right answers /
+  facts in the key. A wrong value counts against both.
+- Model {{< var run.model >}} on a laptop CPU, temperature 0: {{< var run.calls >}} real calls, {{< var run.sec_per_call >}} s
+  each on average. {{< var run.first_try >}} documents passed the checks first time, {{< var run.retried >}} on a retry, and
+  {{< var run.fallback >}} fell back to the rules.
+- 50 documents is a small test: one mistake moves a box's score by 2 to 4 points. Run date {{< var run.date >}}; tests
+  {{< var run.pytest >}}. Source files: `docs/results.json` and `exports/*.csv`. This page is rebuilt from them and the
+  build stops if any number disagrees.
+:::
+:::

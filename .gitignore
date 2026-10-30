@@ -7,3 +7,9 @@ __pycache__/
 
 # Generated (rebuilt by `python -m pipeline.run`): PDFs, answer key, caches, DuckDB file
 data/
+
+# Quarto site: sources, site/data and site/_gen are committed; the rendered output is not
+!site/data/
+site/_site/
+site/.quarto/
+site/_build/

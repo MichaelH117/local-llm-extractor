@@ -1,0 +1,40 @@
+---
+pagetitle: "Watch the AI read: Local AI Document Reader"
+description: "Pick a SYNTHETIC work order and see what the local AI filled in, box by box, marked against the answer key."
+body-classes: lle-work
+---
+
+{{< include _gen/status.html >}}
+
+::: {.hl-panel .page-head}
+# Watch the AI read a work order
+
+Pick a document. On the left is the exact text the AI received. On the right is what it filled in, marked against the
+[answer key](glossary.qmd#answer-key){.gl}. The [plain rules](glossary.qmd#rules){.gl} column shows what simple
+search patterns found on the same page. Every document is [SYNTHETIC](glossary.qmd#synthetic){.gl}.
+
+```{=html}
+<div class="reader-controls" id="reader-controls" role="group" aria-label="Choose a document"></div>
+<p class="reader-status" id="reader-status" aria-live="polite"></p>
+```
+:::
+
+```{=html}
+<div class="reader" id="reader">
+  <noscript><p class="hl-panel">This page needs JavaScript to switch documents. Every wrong answer is also listed, with its document text, on <a href="errors.html">Where it slipped</a>.</p></noscript>
+</div>
+```
+
+::: {.hl-panel .how-to}
+## How to read this page
+
+- **Highlights** show where each answer sits on the page. Each one carries the box number from the table.
+- **✓ Right** means the AI's answer matches the answer key. **✗** says what went wrong: a wrong value, an invented
+  value, or a blank.
+- **Dotted underline: a decoy.** A last-service date or an hour-meter reading that looks like an answer but is not.
+  They were planted on purpose.
+- The highlight positions are found by this website's build script from the generator's label lists, not by the AI. The
+  AI only returns the values.
+- **Random document** picks any of the 50. **Show me a mistake** picks one of the documents the AI got at least one box
+  wrong on, so the failures are easy to find.
+:::

@@ -1,0 +1,88 @@
+/* =====================================================================================================
+   Hanson Labs base tokens (shared by every project). Load this first, then ONE file from tokens/themes/.
+   The theme file fills the colour and font roles; everything here is the same in every product.
+   Rules: flat colour, hairline rules, small corners, no gradients on UI, no glows, no glass.
+   ===================================================================================================== */
+:root, [data-hl-theme] {
+  /* ---- spacing: a 4 px grid ---- */
+  --hl-space-0: 0;
+  --hl-space-1: 4px;
+  --hl-space-2: 8px;
+  --hl-space-3: 12px;
+  --hl-space-4: 16px;
+  --hl-space-5: 24px;
+  --hl-space-6: 32px;
+  --hl-space-7: 48px;
+  --hl-space-8: 64px;
+  --hl-space-9: 96px;
+  --hl-gutter: 16px;                 /* page side gutter at phone width */
+  --hl-measure: 68ch;                /* reading width for body copy */
+  --hl-touch: 44px;                  /* minimum touch target */
+
+  /* ---- radii: small on purpose (big pill corners read as template UI) ---- */
+  --hl-radius-0: 0;
+  --hl-radius-1: 2px;
+  --hl-radius-2: 4px;
+  --hl-radius-3: 8px;                /* the largest corner we use, for dialogs only */
+  --hl-radius: var(--hl-radius-1);   /* each theme sets its own default */
+
+  /* ---- lines ---- */
+  --hl-hairline: 1px;
+  --hl-rule: 2px;                    /* the top rule on a paper panel */
+  --hl-focus-width: 3px;
+  --hl-focus-offset: 2px;
+
+  /* ---- type scale: 1.25 (major third) on a theme-set base. FORMULARY sets 17 px for older eyes. ---- */
+  --hl-text-base: 16px;
+  --hl-text-xs: calc(var(--hl-text-base) * .8);     /* 12.8: captions in dense tables only, never under 12 px */
+  --hl-text-sm: calc(var(--hl-text-base) * .9);
+  --hl-text-md: var(--hl-text-base);
+  --hl-text-lg: calc(var(--hl-text-base) * 1.25);
+  --hl-text-xl: calc(var(--hl-text-base) * 1.563);
+  --hl-text-2xl: calc(var(--hl-text-base) * 1.953);
+  --hl-text-3xl: calc(var(--hl-text-base) * 2.441);
+  --hl-text-4xl: calc(var(--hl-text-base) * 3.052); /* one hero number per page */
+  --hl-leading-tight: 1.12;
+  --hl-leading-snug: 1.3;
+  --hl-leading-body: 1.55;
+  --hl-tracking-display: -.015em;
+  --hl-tracking-label: .04em;        /* small labels; avoid long ALL-CAPS runs */
+
+  /* ---- motion: UI feedback is fast; ambient motion is very slow ---- */
+  --hl-dur-instant: 80ms;            /* press states */
+  --hl-dur-fast: 150ms;              /* hover, the MANILA stamp "thud" */
+  --hl-dur-base: 240ms;              /* panels, menus, chart transitions */
+  --hl-dur-slow: 400ms;              /* chapter changes, the one LEDGER odometer roll is 900ms */
+  --hl-dur-ambient-min: 20s;         /* the fastest any wallpaper form may change */
+  --hl-dur-ambient-max: 90s;
+  --hl-ease-standard: cubic-bezier(.2, 0, 0, 1);
+  --hl-ease-out: cubic-bezier(0, 0, .2, 1);
+  --hl-ease-in: cubic-bezier(.4, 0, 1, 1);
+  --hl-ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --hl-ease-stamp: cubic-bezier(.3, 1.4, .5, 1);    /* one small overshoot; MANILA stamp only */
+
+  /* ---- layers ---- */
+  --hl-z-wallpaper: -2;
+  --hl-z-grain: -1;
+  --hl-z-content: 1;
+  --hl-z-chrome: 1030;
+  --hl-z-control: 1035;              /* the motion toggle */
+  --hl-z-tooltip: 2000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root, [data-hl-theme] {
+    --hl-dur-fast: 0ms; --hl-dur-base: 0ms; --hl-dur-slow: 0ms;
+  }
+}
+
+/* ---- a minimal shared skin that any project may opt into with class="hl" on <body> ---- */
+.hl { background: var(--hl-bg); color: var(--hl-ink); font: 400 var(--hl-text-md)/var(--hl-leading-body) var(--hl-font-body); }
+.hl h1, .hl h2, .hl h3 { font-family: var(--hl-font-display); line-height: var(--hl-leading-tight); letter-spacing: var(--hl-tracking-display); color: var(--hl-ink); }
+.hl a { color: var(--hl-accent); text-underline-offset: .18em; }
+.hl :focus-visible { outline: var(--hl-focus-width) solid var(--hl-focus); outline-offset: var(--hl-focus-offset); }
+.hl .hl-mono, .hl code { font-family: var(--hl-font-mono); font-variant-numeric: tabular-nums; }
+/* the paper panel: content always sits on one of these, never on moving pixels */
+.hl-panel { background: var(--hl-panel); border-top: var(--hl-rule) solid var(--hl-ink); border-radius: 0 0 var(--hl-radius) var(--hl-radius);
+  padding: var(--hl-space-5) var(--hl-space-6); }
+@media (max-width: 767.98px) { .hl-panel { padding: var(--hl-space-4) var(--hl-gutter); } }

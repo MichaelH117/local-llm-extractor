@@ -1,0 +1,7 @@
+```{=html}
+<pre class="code" aria-label="Lines quoted from extractor/llm.py"><code>LOCAL_HOSTS = {&quot;localhost&quot;, &quot;127.0.0.1&quot;, &quot;::1&quot;}
+class NonLocalEndpointError(ValueError):
+        host = urlparse(base_url).hostname
+        if host not in LOCAL_HOSTS:
+            raise NonLocalEndpointError(f&quot;refusing to send documents to non-local host {host!r}&quot;)</code></pre><p class="code-note">Quoted at build time from <code>extractor/llm.py</code>. The test <code>test_client_refuses_non_local_endpoints</code> tries 3 outside addresses and passes only if every one is refused: <code>https://api.example.com</code>, <code>http://10.0.0.5:11434</code>, <code>http://my-gpu-box:11434</code>.</p>
+```

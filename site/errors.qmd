@@ -1,0 +1,110 @@
+---
+pagetitle: "Where it slipped: Local AI Document Reader"
+description: "Every one of the 24 boxes the local AI got wrong, grouped into 4 causes, with the real SYNTHETIC document text."
+---
+
+{{< include _gen/status.html >}}
+
+::: {.hl-panel .page-head}
+# {{< var wrong >}} of {{< var cells >}} boxes were wrong. Here is every one, and why.
+
+That is {{< var wrong_vals >}} wrong values, {{< var invented >}} invented values and {{< var blanks >}} blanks. They fall
+into four causes. Each card quotes the document text the AI saw, with the answer key next to the AI's answer. All
+documents are [SYNTHETIC](glossary.qmd#synthetic){.gl}.
+
+{{< include _gen/causes.html >}}
+:::
+
+::: {.hl-panel .chapter #priority}
+## 1. Priority read backwards on new wording ({{< var causes.priority >}} boxes)
+
+The new forms say "P1 - Critical", "P2 - Normal", "P3 - Deferred" or "precedence 2, normal". The AI handled
+"P1 - Critical" but turned "normal" into **low**, and once turned "P3 - Deferred" into **high**. All
+{{< var causes.priority >}} are on new forms.
+
+{{< include _gen/ex_priority.html >}}
+
+::: {.wtm}
+**Why it matters.** A wrong priority can send urgent work to the back of the queue. **Likely fix:** spell out the P1/P2/P3
+scale in the AI's instructions, then test on a fresh set of new forms (not these).
+:::
+:::
+
+::: {.hl-panel .chapter #category}
+## 2. "What broke" guessed as engine in free-text notes ({{< var causes.category >}} boxes)
+
+Emails never name the category. The AI has to work it out from a symptom such as "alternator not charging". When unsure,
+it tended to answer **engine**: 6 of these 7 wrong answers say engine. On forms and tables, where a label names the
+category, it was almost always right.
+
+{{< include _gen/ex_category.html >}}
+
+::: {.wtm}
+**Why it matters.** Costs get filed under the wrong system, so reports on what breaks most are skewed. **Likely fix:** give
+the AI a short list of example symptoms per category, and send free-text answers to a person for a quick check.
+:::
+:::
+
+::: {.hl-panel .chapter #date}
+## 3. A report date invented when none was given ({{< var causes.date >}} boxes)
+
+Three emails say "came in earlier this week" and give no report date. They do mention the last service date, a decoy
+planted on purpose. Twice the AI copied the decoy. Once (doc_014) it wrote 2024-12-11, a date that appears nowhere in the
+text. This is the only [hallucination](glossary.qmd#hallucination){.gl} in the run.
+
+{{< include _gen/ex_date.html >}}
+
+::: {.wtm}
+**Why it matters.** A believable wrong date is worse than a blank, because nobody notices it. **Likely fix:** make the
+checker reject any date that does not appear in the text, so the box stays blank instead.
+:::
+:::
+
+::: {.hl-panel .chapter #fallback}
+## 4. One document fell back to the plain rules ({{< var causes.fallback >}} boxes)
+
+doc_043 writes its date as `19-JUL-2025`. The automatic [checks](glossary.qmd#validation){.gl} want `2025-07-19`. The AI
+was shown the error and tried again, twice, and missed the format each time. After three tries the
+[fallback](glossary.qmd#fallback){.gl} threw away the whole answer and used the rules, which do not know the new labels.
+That cost 5 boxes, 3 of which the AI had actually got right.
+
+{{< include _gen/ex_fallback.html >}}
+
+::: {.wtm}
+**Why it matters.** One bad box wiped out good ones. **Likely fix:** convert common date styles in the checker, or keep the
+valid boxes and blank only the bad one.
+:::
+:::
+
+::: {.hl-panel .chapter #numbers}
+## What did not go wrong: no made-up numbers
+
+In the {{< var num.cells >}} labor-hours and parts-cost boxes, the AI gave no wrong or invented value. The only misses are
+the {{< var num.blank >}} blanks on doc_043. Where a document left the hours or cost out on purpose, it correctly
+answered blank.
+:::
+
+::: {.hl-panel .chapter #public}
+## Real public text: {{< var nhtsa.match >}} of {{< var nhtsa.n >}} vehicle recalls matched NHTSA's own label
+
+[PUBLIC DATA]{.tag .tag-public} The AI read each [NHTSA](glossary.qmd#nhtsa){.gl} recall summary and named the broken
+system. NHTSA's own component label is the answer key. In 3 of the {{< var nhtsa.miss >}} misses it named the system that
+gets hurt (fuel, brakes) instead of the part that is broken. The {{< var fda.n >}} [FDA](glossary.qmd#fda){.gl} recalls
+have no answer key; a hand check agreed on all 10, which is a smoke test, not a measurement.
+
+{{< include _gen/nhtsa.html >}}
+:::
+
+::: {.hl-panel .chapter #all}
+## All {{< var wrong >}} wrong boxes in one table
+
+```{=html}
+<div class="filter-row"><label for="cause-filter">Show</label>
+<select id="cause-filter"><option value="">All causes</option><option value="priority">1. Priority read backwards</option>
+<option value="category">2. "What broke" guessed as engine</option><option value="date">3. Invented date</option>
+<option value="fallback">4. Fallback (doc_043)</option></select>
+<span id="filter-count" class="muted" aria-live="polite"></span></div>
+```
+
+{{< include _gen/all_errors.html >}}
+:::

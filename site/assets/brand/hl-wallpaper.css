@@ -1,0 +1,46 @@
+/* Hanson Labs living wallpaper: layout, static textures and the motion control. Pairs with hl-wallpaper.js.
+   The wallpaper never sits under text: put content on .hl-panel (tokens/base.css) or another solid surface. */
+.hlw { pointer-events: none; overflow: hidden; background: var(--hlw-paper, var(--hl-bg, #F5F2EB)); }
+.hlw-page { position: fixed; inset: 0; z-index: var(--hl-z-wallpaper, -2); }
+.hlw-box { position: absolute; inset: 0; z-index: 0; }
+.hlw[hidden] { display: none; }
+.hlw canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hlw-blobs { filter: blur(14px); transform: scale(1.06); }
+.hlw-box .hlw-blobs { filter: blur(10px); }
+
+/* static, theme-specific textures (they never move) */
+.hlw::after { content: ""; position: absolute; inset: 0; }
+.hlw[data-theme="specimen"]::after, .hlw[data-theme="visor"]::after {
+  background: repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in srgb, var(--hlw-line, #0F5E6B) 4%, transparent) 3px 4px); }
+.hlw[data-theme="visor"]::after {
+  background: repeating-linear-gradient(0deg, transparent 0 2px, color-mix(in srgb, var(--hlw-line, #3FD0E0) 6%, transparent) 2px 3px); }
+.hlw[data-theme="manila"]::after { opacity: .05; mix-blend-mode: multiply;   /* paper fibre */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .55' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .15 0 0 0 1.6 -.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"); }
+.hlw[data-theme="ledger"]::after {   /* fine security-print rule lines */
+  background: repeating-linear-gradient(135deg, transparent 0 5px, color-mix(in srgb, var(--hlw-line, #0B1F33) 3%, transparent) 5px 6px); }
+
+/* the control: always visible, 44 px, solid, bottom-left of the page or the box */
+.hlw-controls { display: flex; gap: 6px; z-index: var(--hl-z-control, 1035); }
+.hlw-controls-page { position: fixed; left: 14px; bottom: 14px; }
+.hlw-box ~ .hlw-controls, .hlw-controls:not(.hlw-controls-page) { position: absolute; left: 10px; bottom: 10px; }
+.hlw-btn { display: inline-flex; align-items: center; gap: 8px; min-height: var(--hl-touch, 44px); min-width: var(--hl-touch, 44px);
+  padding: 0 14px; border: 1.5px solid var(--hl-ink, #15212B); border-radius: var(--hl-radius, 2px);
+  background: var(--hl-panel, #FBF9F4); color: var(--hl-ink, #15212B); font: 500 .82rem/1 var(--hl-font-body, system-ui, sans-serif); cursor: pointer; }
+.hlw-btn svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
+.hlw-btn:hover { background: var(--hl-ink, #15212B); color: var(--hl-panel, #FBF9F4); }
+.hlw-btn:focus-visible { outline: var(--hl-focus-width, 3px) solid var(--hl-focus, #0F5E6B); outline-offset: 2px; }
+.hlw-btn:disabled { cursor: default; color: var(--hl-muted, #5B6670); border-color: var(--hl-line, #D8D1C2); background: var(--hl-panel, #FBF9F4); }
+.hlw-btn[hidden] { display: none; }
+@media (max-width: 767.98px) {   /* icon-only on phones; the name stays for screen readers */
+  .hlw-btn { padding: 0; justify-content: center; }
+  .hlw-btn span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .hlw-controls-page { left: 8px; bottom: 8px; }
+}
+
+@media (forced-colors: active) { .hlw { display: none; } .hlw-btn { border-color: ButtonText; } }
+@media print { .hlw, .hlw-controls { display: none !important; } }
+/* below 1500 px the page control shrinks to an icon in the left gutter so it covers less of the content */
+@media (max-width: 1499.98px) {
+  .hlw-controls-page .hlw-btn { padding: 0; justify-content: center; }
+  .hlw-controls-page .hlw-btn span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
