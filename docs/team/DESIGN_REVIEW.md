@@ -3,7 +3,7 @@
 Seat: Design Lead. Site: `site/` (5 pages), rendered to `site/_site/`. Screenshots: `docs/img/site/`.
 
 **Context (3 lines).** Audience: a small-office manager (median age about 45, not technical, worried about client
-confidentiality), plus a recruiter checking for an honest AI evaluation. Must know: what it does, how accurate it is on
+confidentiality). Must know: what it does, how accurate it is on
 new forms, and that nothing leaves the PC. Should do: try the document reader, then read the privacy page.
 
 ## Checks (headless Chrome via CDP, one Chrome at a time)

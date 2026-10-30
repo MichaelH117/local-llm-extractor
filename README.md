@@ -256,7 +256,7 @@ running (`pytest -m "not integration"` leaves it out).
 
 ## Limits, and what I would do with real documents
 
-This is a portfolio project. The documents are synthetic and I have not run it on real military or contract data.
+This is a demonstration project. The documents are synthetic and I have not run it on real military or contract data.
 
 - **50 documents is a small test.** One error moves a field's score by 2 to 4 points. A real evaluation needs a
   few hundred hand-labelled real documents, with a second person checking the labels.

@@ -34,7 +34,7 @@ website:
       - href: glossary.qmd
         text: Glossary
   page-footer:
-    left: "SYNTHETIC documents only. FDA and NHTSA records are public data. A portfolio demonstration, not a product for sale."
+    left: "SYNTHETIC documents only. FDA and NHTSA records are public data. A demonstration, not a product for sale."
     center: '<span class="hl-lockup"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><path d="M4 12V4H12M52 4H60V12M60 52V60H52M12 60H4V52" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16V48M16 32H36M36 16V48H47" fill="none" stroke="currentColor" stroke-width="6.5" stroke-linecap="square"/><circle class="hl-dot" cx="47" cy="21" r="4.6"/></svg><span>A <b>Hanson Labs</b> project</span></span>'
     right: "Built with Quarto from `docs/results.json` and `exports/`."
 
