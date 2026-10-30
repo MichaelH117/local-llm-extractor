@@ -13,3 +13,10 @@
 - Checks: build_tokens 170 checks, 0 failed. quarto render site: 5/5 pages, 0 warnings. Planted mismatch in field_accuracy.csv -> build_data exit 1 (4 checks fired), restored. Headless Chrome: 33 audit runs (5 pages x 1440/1280x720/640/375/forced-colors/reduced-motion + dark + 2 reader states): 0 errors, 0 overflow, 0 small targets, 0 broken labels.
 - Open: titles not yet reader-tested; no network capture; no real phone/screen reader test; GitHub Pages publishing not set up (no push).
 - Next: QA Engineer (or UX researcher for the takeaway-title restatement test).
+
+## 2026-10-30 principal-engineer (overnight step 7: cross-project consistency review)
+- Did: added an Open issues note to the README Limits section: pytest record (32) predates 3 regression tests (35 total); Pause button overlap at 375 px on the site.
+- Files: README.md
+- Checks: README headline numbers compared with docs/results.json by hand; no code or numbers changed.
+- Open: Needs a pipeline.run --test with Ollama running to record 35 tests.
+- Full review: dev-team/brand/portfolio/CONSISTENCY_REVIEW.md. Next: Michael (Ollama run), design-lead (pause overlap).

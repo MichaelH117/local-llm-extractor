@@ -273,6 +273,12 @@ This is a portfolio project. The documents are synthetic and I have not run it o
   the model files, Ollama and Python packages would still need to be approved and scanned under that system's
   authorisation (for example an RMF/ATO process) before use.
 
+**Open issues, 2026-10-30.**
+
+- The pytest record above (32 passed) is from the recorded run. Three regression tests were added later the same day;
+  the 34 non-integration tests pass. The full 35-test record needs one `pipeline.run --test` with Ollama running.
+- On the results site at 375 px, the Pause motion button can overlap page text.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
