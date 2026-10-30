@@ -1,0 +1,17 @@
+[project]
+name = "local-llm-extractor"
+version = "0.1.0"
+description = "Messy PDFs, a scraped government page and a public API -> structured, validated records with a local LLM (Ollama + Gemma) -> DuckDB + Power BI CSVs, scored against an answer key."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = ["integration: calls the real local Ollama model (skipped if Ollama or the model is not available)"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

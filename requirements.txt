@@ -1,0 +1,10 @@
+# Local stack. Verified on Python 3.13.0 / Windows 11 with Ollama 0.40 and gemma3:4b.
+pypdf==5.1.0
+reportlab==5.1.0
+pydantic==2.14.2
+requests==2.34.2
+beautifulsoup4==4.13.4
+duckdb==1.4.1
+pandas==2.3.3
+pytest==8.4.2
+ruff==0.14.1
